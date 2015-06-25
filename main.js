@@ -162,27 +162,6 @@ function init()
 function onUpdate(update)
 {
     // Router
-    /*{
-        update_id: 714637003,
-        message:
-        {
-            message_id: 90,
-            from:
-            {
-                id: 12627838,
-                first_name: 'Denys',
-                last_name: 'Vitali',
-                username: 'denvit'
-            },
-            chat:
-            {
-                id: -15689316,
-                title: '/r/italy: prolassomania'
-            },
-            date: 1435186471,
-            text: '/test'
-        }
-    }*/
     var hop = function(prop)
     {
         return update.hasOwnProperty(prop)
