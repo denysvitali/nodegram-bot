@@ -1,6 +1,8 @@
 # nodegram-bot
 A Telegram-bot written in Node.JS
 
+![The trend plugin](http://i.imgur.com/Lz5oYTV.png)
+
 ## First things first
 To make your bot working you have to gather somehow a valid SSL certificate, because as stated in the docs of Telegram 
 > Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update.
