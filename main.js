@@ -114,9 +114,9 @@ for (i in plugins)
 function init()
 {
 
-    app.use(bodyParser.json()); // to support JSON-encoded bodies
+    app.use(bodyParser.json());
     app.use(bodyParser.urlencoded(
-    { // to support URL-encoded bodies
+    {
         extended: true
     }));
 
@@ -131,7 +131,6 @@ function init()
     app.post('/' + webhookHash, function(req, res)
     {
         debug.info("Got a message from Telegram!".green)
-        //console.log(req.body);
         onUpdate(req.body);
         res.end(JSON.stringify(
         {
@@ -140,7 +139,7 @@ function init()
     });
 
     debug.info("webHook: " + webhookHash)
-    var url = "https://denvit.work/" + webhookHash
+    var url = "https://"+ settings.hostname +"/" + webhookHash
     debug.info(url);
     request(
     {
@@ -148,7 +147,7 @@ function init()
         method: "GET",
         formData:
         {
-            url: "https://"+settings.hostname+"/" + webhookHash
+            url: url
         }
     })
         .then(function(contents)
@@ -373,9 +372,6 @@ function parseTextMsg(message)
     {
         case "/status":
             sendMessage(chat_id, me.name + " is online and rocking!", null, message.message_id, null)
-                .then(function() {
-
-                });
             break;
     }
 }
