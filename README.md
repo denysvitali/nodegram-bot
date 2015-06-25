@@ -4,6 +4,7 @@ A Telegram-bot written in Node.JS
 ## First things first
 To make your bot working you have to gather somehow a valid SSL certificate, because as stated in the docs of Telegram 
 > Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update.
+
 This is the most tricky part. Once you've set-up your domain with the SSL certificate (maybe gathered from (StartSSL)[https://www.startssl.com/]) you could proceed to the configuration of apache.
 
 ### Virtual Hosts, oh, virtual hosts
@@ -40,3 +41,4 @@ Things you probably need to change:
 
 Set up everything as this and just change it as you need.
 The port should be 30303 if you didn't changed it into settings.js 
+
