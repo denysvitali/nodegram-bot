@@ -148,7 +148,7 @@ function init()
         method: "GET",
         formData:
         {
-            url: "https://denvit.work/" + webhookHash
+            url: "https://"+settings.hostname+"/" + webhookHash
         }
     })
         .then(function(contents)
