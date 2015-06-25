@@ -31,5 +31,12 @@ ProxyPassReverse / http://127.0.0.1:30303/
 </VirtualHost>
 ```
 
+Things you probably need to change:
+
+-	SSLCertificateFile, this is the path of your SSL certificate file
+-	SSLCertificateKeyFile, this is the key of your SSL pair
+-	ServerName, this is your hostname. The one specified into the settings.js file
+-	ServerAlias, this is an alias for your virtualhost (in my case it's also reachable via https://vps.denvit.work/)
+
 Set up everything as this and just change it as you need.
 The port should be 30303 if you didn't changed it into settings.js 
