@@ -4,10 +4,9 @@ var request = Promise.promisify(require("request"));
 var bodyParser = require('body-parser')
 
 
-// Express on HTTPS
+// Express on HTTP
 var fs = require('fs'),
     read = fs.readFileSync,
-    https = require('https'),
     express = require('express'),
     app = express();
 
