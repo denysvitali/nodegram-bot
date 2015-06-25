@@ -1,6 +1,10 @@
 var Promise = require("bluebird");
 var request = Promise.promisify(require("request"));
 
+var settings = require("./settings");
+var debug = require("./debug");
+
+
 var methods = {};
 
 methods.sendMessage = function(chatid, message, dwp, reply_to_mid, reply_markup)
@@ -48,7 +52,14 @@ methods.sendSticker = function(chatid, sticker, reply_to_mid, reply_mup)
         reply_markup: reply_mup
     };
 
-
+    var keys = Object.keys(formData);
+    for (i in keys)
+    {
+        if (formData[keys[i]] == null)
+        {
+            delete formData[keys[i]]
+        }
+    }
 
     return request(
         {

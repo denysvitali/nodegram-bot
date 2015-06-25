@@ -14,6 +14,7 @@ var fs = require('fs'),
 var settings = require('./settings');
 var debug = require('./debug');
 var utils = require('./utils');
+var methods = require('./methods');
 
 
 // Objects
@@ -46,20 +47,22 @@ for (i in result)
     }
 }
 
+console.log("PLUGINS: ",plugins)
+
 var
-    parseFwdMsg_arr =
-    parseDocumentMsg_arr =
-    parsePhotoMsg_arr =
-    parseStickerMsg_arr =
-    parseVideoMsg_arr =
-    parseContactMsg_arr =
-    parseLocationMsg_arr =
-    parseNewChatParticipantMsg_arr =
-    parseLeftParticipant_arr =
-    parseNewChatTitle_arr =
-    parseNewChatPhoto_arr =
-    parseDeleteChatPhoto_arr =
-    parseGroupChatCreated_arr =
+    parseFwdMsg_arr = [],
+    parseDocumentMsg_arr = [],
+    parsePhotoMsg_arr = [],
+    parseStickerMsg_arr = [],
+    parseVideoMsg_arr = [],
+    parseContactMsg_arr = [],
+    parseLocationMsg_arr = [],
+    parseNewChatParticipantMsg_arr = [],
+    parseLeftParticipant_arr = [],
+    parseNewChatTitle_arr = [],
+    parseNewChatPhoto_arr = [],
+    parseDeleteChatPhoto_arr = [],
+    parseGroupChatCreated_arr = [],
     parseTextMsg_arr = [];
 
 for (i in plugins)
@@ -200,7 +203,7 @@ function parseMsg(message)
             break;
 
         case hop("sticker"):
-            parseStickerMsg(message.sticker);
+            parseStickerMsg(message);
             break;
 
         case hop("video"):
@@ -270,13 +273,14 @@ function parsePhotoMsg(photo)
     }
 }
 
-function parseStickerMsg(sticker)
+function parseStickerMsg(message)
 {
-    for (i in parseFwdMsg_arr)
+    console.log("parseStickerMsg");
+    for (i in parseStickerMsg_arr)
     {
-        parseStickerMsg_arr[i].parseStickerMsg(sticker);
+        parseStickerMsg_arr[i].parseStickerMsg(message);
     }
-    console.log(sticker);
+    console.log(parseStickerMsg_arr, parseStickerMsg_arr.length);
 }
 
 function parseVideoMsg(video)
@@ -370,67 +374,7 @@ function parseTextMsg(message)
     switch (message.text)
     {
         case "/status":
-            sendMessage(chat_id, me.name + " is online and rocking!", null, message.message_id, null)
+            methods.sendMessage(chat_id, me.name + " is online and rocking!", null, message.message_id, null)
             break;
     }
-}
-
-function sendMessage(chatid, message, dwp, reply_to_mid, reply_markup)
-{
-    var formData = {
-        chat_id: chatid,
-        text: message,
-        disable_web_page_preview: dwp,
-        reply_to_message_id: reply_to_mid,
-        reply_markup: reply_markup
-    };
-
-    var keys = Object.keys(formData);
-    for (i in keys)
-    {
-        console.log(i, keys[i]);
-        if (formData[keys[i]] == null)
-        {
-            delete formData[keys[i]]
-        }
-    }
-
-    return request(
-        {
-            url: settings.api + "/bot" + settings.token + "/sendMessage",
-            method: "POST",
-            formData: formData
-        })
-        .catch(function(e)
-        {
-            debug.err(e);
-        })
-}
-
-function sendSticker(chatid, sticker, reply_to_mid, reply_mup)
-{
-    if (typeof(reply_to_mid) == "undefined")
-        reply_to_mid = null
-    if (typeof(reply_mup) == "undefined")
-        reply_mup = null
-
-    var formData = {
-        chat_id: chatid,
-        sticker: sticker,
-        reply_to_message_id: reply_to_mid,
-        reply_markup: reply_mup
-    };
-
-
-
-    return request(
-        {
-            url: settings.api + "/bot" + settings.token + "/sendSticker",
-            method: "POST",
-            formData: formData
-        })
-        .catch(function(e)
-        {
-            debug.err(e);
-        })
 }
