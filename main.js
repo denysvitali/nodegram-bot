@@ -47,19 +47,19 @@ for (i in result)
 }
 
 var
-    parseFwdMsg_arr,
-    parseDocumentMsg_arr,
-    parsePhotoMsg_arr,
-    parseStickerMsg_arr,
-    parseVideoMsg_arr,
-    parseContactMsg_arr,
-    parseLocationMsg_arr,
-    parseNewChatParticipantMsg_arr,
-    parseLeftParticipant_arr,
-    parseNewChatTitle_arr,
-    parseNewChatPhoto_arr,
-    parseDeleteChatPhoto_arr,
-    parseGroupChatCreated_arr,
+    parseFwdMsg_arr =
+    parseDocumentMsg_arr =
+    parsePhotoMsg_arr =
+    parseStickerMsg_arr =
+    parseVideoMsg_arr =
+    parseContactMsg_arr =
+    parseLocationMsg_arr =
+    parseNewChatParticipantMsg_arr =
+    parseLeftParticipant_arr =
+    parseNewChatTitle_arr =
+    parseNewChatPhoto_arr =
+    parseDeleteChatPhoto_arr =
+    parseGroupChatCreated_arr =
     parseTextMsg_arr = [];
 
 for (i in plugins)
