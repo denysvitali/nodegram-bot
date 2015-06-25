@@ -38,6 +38,38 @@ methods.sendMessage = function(chatid, message, dwp, reply_to_mid, reply_markup)
         })
 }
 
+methods.sendPhoto = function(chatid, photo, caption, reply_to_mid, reply_markup)
+{
+    var formData = {
+        chat_id: chatid,
+        photo: photo,
+        caption: caption,
+        reply_to_message_id: reply_to_mid,
+        reply_markup: reply_markup
+    };
+
+
+    var keys = Object.keys(formData);
+    for (i in keys)
+    {
+        if (formData[keys[i]] == null)
+        {
+            delete formData[keys[i]]
+        }
+    }
+
+    return request(
+        {
+            url: settings.api + "/bot" + settings.token + "/sendPhoto",
+            method: "POST",
+            formData: formData
+        })
+        .catch(function(e)
+        {
+            debug.err(e);
+        })
+}
+
 methods.sendSticker = function(chatid, sticker, reply_to_mid, reply_mup)
 {
     if (typeof(reply_to_mid) == "undefined")
