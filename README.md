@@ -61,3 +61,15 @@ Show a graph of trend based on Google Trends
 
 #### Usage
 /trend trend1,trend2[,trend3,...]
+
+### Clear
+Did you ever thought of cleaning your chat?
+Now you can, with Mr.Clean!
+<img src="http://i.imgur.com/spw9x7a.jpg" height=100 /> 
+
+#### Result
+(obviously the output is more longer)
+![Clear](http://i.imgur.com/YKA10z2.png)
+
+#### Usage
+/clear
