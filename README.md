@@ -1,3 +1,4 @@
+<img src="http://i.imgur.com/Tz2m0v9.png" width=300 />
 # nodegram-bot
 A Telegram-bot written in Node.JS
 
