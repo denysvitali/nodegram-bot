@@ -11,7 +11,7 @@ var fs = require('fs'),
     app = express();
 
 // LFI
-var settings = require('./settings');
+var settings = JSON.parse(fs.readFileSync(__dirname + "/settings.json"));
 var debug = require('./debug');
 var utils = require('./utils');
 var methods = require('./methods');
@@ -47,10 +47,11 @@ for (i in result)
     }
 }
 
-console.log("PLUGINS: ",plugins)
+console.log("PLUGINS: ", plugins)
 
 var
     parseFwdMsg_arr = [],
+    parseAudioMsg_arr = [],
     parseDocumentMsg_arr = [],
     parsePhotoMsg_arr = [],
     parseStickerMsg_arr = [],
@@ -71,7 +72,10 @@ for (i in plugins)
     if (typeof(plugin.parseFwdMsg) == "function")
         parseFwdMsg_arr.push(plugin);
 
-    if (typeof(plugin.parseFwdMsg) == "function")
+    if (typeof(plugin.parseAudioMsg) == "function")
+        parseAudioMsg_arr.push(plugin);
+
+    if (typeof(plugin.parseDocumentMsg) == "function")
         parseDocumentMsg_arr.push(plugin);
 
     if (typeof(plugin.parsePhotoMsg) == "function")
@@ -112,6 +116,11 @@ for (i in plugins)
 
 }
 
+function updateSettings()
+{
+    fs.writeFileSync(__dirname + "/settings.json", JSON.stringify(settings));
+}
+
 
 function init()
 {
@@ -128,9 +137,15 @@ function init()
         res.send('<h1>Tg-bot</h1>');
     });
 
-    var webhookHash = utils.generateHash();
 
-    app.post('/' + webhookHash, function(req, res)
+    if (typeof(settings.webHook) != "string")
+    {
+        settings.webHook = utils.generateHash();
+    }
+
+    updateSettings();
+
+    app.post('/' + settings.webHook, function(req, res)
     {
         debug.info("Got a message from Telegram!".green)
         onUpdate(req.body);
@@ -140,8 +155,8 @@ function init()
         }));
     });
 
-    debug.info("webHook: " + webhookHash)
-    var url = "https://"+ settings.hostname +"/" + webhookHash
+    debug.info("webHook: " + settings.webHook)
+    var url = "https://" + settings.hostname + "/" + settings.webHook
     debug.info(url);
     request(
     {
@@ -191,15 +206,15 @@ function parseMsg(message)
             break;
 
         case hop("audio"):
-            parseAudioMsg(message.audio);
+            parseAudioMsg(message);
             break;
 
         case hop("document"):
-            parseDocumentMsg(message.document);
+            parseDocumentMsg(message);
             break;
 
         case hop("photo"):
-            parsePhotoMsg(message.photo);
+            parsePhotoMsg(message);
             break;
 
         case hop("sticker"):
@@ -207,31 +222,31 @@ function parseMsg(message)
             break;
 
         case hop("video"):
-            parseVideoMsg(message.video);
+            parseVideoMsg(message);
             break;
 
         case hop("contact"):
-            parseContactMsg(message.contact);
+            parseContactMsg(message);
             break;
 
         case hop("location"):
-            parseLocationMsg(message.location);
+            parseLocationMsg(message);
             break;
 
         case hop("new_chat_participant"):
-            parseNewChatParticipantMsg(message.new_chat_participant);
+            parseNewChatParticipantMsg(message);
             break;
 
         case hop("left_chat_participant"):
-            parseLeftParticipant(message.left_chat_participant);
+            parseLeftParticipant(message);
             break;
 
         case hop("new_chat_title"):
-            parseNewChatTitle(message.new_chat_title);
+            parseNewChatTitle(message);
             break;
 
         case hop("new_chat_photo"):
-            parseNewChatPhoto(message.new_chat_photo);
+            parseNewChatPhoto(message);
             break;
 
         case hop("delete_chat_photo"):
@@ -239,7 +254,7 @@ function parseMsg(message)
             break;
 
         case hop("group_chat_created"):
-            parseGroupChatCreated(message.group_chat_created);
+            parseGroupChatCreated(message);
             break;
 
         case hop("text"):
@@ -257,19 +272,31 @@ function parseFwdMsg(message)
     }
 }
 
-function parseDocumentMsg(document)
+function parseAudioMsg(message)
 {
-    for (i in parseDocumentMsg_arr)
+    var from = message.from;
+    debug.info(("[" + from.first_name + (from.last_name != null ? " " + from.last_name : "") + "]")
+        .yellow + " sent an audio message");
+    debug.info(message.audio);
+    for (i in parseAudioMsg_arr)
     {
-        parseDocumentMsg_arr[i].parseDocumentMsg(document);
+        parseAudioMsg_arr[i].parseAudioMsg(message);
     }
 }
 
-function parsePhotoMsg(photo)
+function parseDocumentMsg(message)
+{
+    for (i in parseDocumentMsg_arr)
+    {
+        parseDocumentMsg_arr[i].parseDocumentMsg(message);
+    }
+}
+
+function parsePhotoMsg(message)
 {
     for (i in parsePhotoMsg_arr)
     {
-        parsePhotoMsg_arr[i].parsePhotoMsg(photo);
+        parsePhotoMsg_arr[i].parsePhotoMsg(message);
     }
 }
 
@@ -283,43 +310,43 @@ function parseStickerMsg(message)
     console.log(parseStickerMsg_arr, parseStickerMsg_arr.length);
 }
 
-function parseVideoMsg(video)
+function parseVideoMsg(message)
 {
     for (i in parseVideoMsg_arr)
     {
-        parseVideoMsg_arr[i].parseVideoMsg(video);
+        parseVideoMsg_arr[i].parseVideoMsg(message);
     }
 }
 
-function parseContactMsg(contact)
+function parseContactMsg(message)
 {
     for (i in parseContactMsg_arr)
     {
-        parseContactMsg_arr[i].parseContactMsg(contact);
+        parseContactMsg_arr[i].parseContactMsg(message);
     }
 }
 
-function parseLocationMsg(location)
+function parseLocationMsg(message)
 {
     for (i in parseLocationMsg_arr)
     {
-        parseLocationMsg_arr[i].parseLocationMsg(location);
+        parseLocationMsg_arr[i].parseLocationMsg(message);
     }
 }
 
-function parseNewChatParticipantMsg(user)
+function parseNewChatParticipantMsg(message)
 {
     for (i in parseNewChatParticipantMsg_arr)
     {
-        parseNewChatParticipantMsg_arr[i].parseNewChatParticipantMsg(user);
+        parseNewChatParticipantMsg_arr[i].parseNewChatParticipantMsg(message);
     }
 }
 
-function parseLeftParticipant(user)
+function parseLeftParticipant(message)
 {
     for (i in parseLeftParticipant_arr)
     {
-        parseLeftParticipant_arr[i].parseLeftParticipant(user);
+        parseLeftParticipant_arr[i].parseLeftParticipant(message);
     }
 }
 
@@ -348,11 +375,11 @@ function parseDeleteChatPhoto(bool)
     // true
 }
 
-function parseGroupChatCreated(bool)
+function parseGroupChatCreated(message)
 {
     for (i in parseFwdMsg_arr)
     {
-        parseGroupChatCreated_arr[i].parseGroupChatCreated(bool);
+        parseGroupChatCreated_arr[i].parseGroupChatCreated(message);
     }
     // true
 }
@@ -368,7 +395,7 @@ function parseTextMsg(message)
     var from = message.from;
     var chat_id = message.chat.id
 
-    debug.info(("[" + from.first_name + " " + from.last_name + "]")
+    debug.info(("[" + from.first_name + (from.last_name != null ? " " + from.last_name : "") + "]")
         .yellow + " => " + message.text);
 
     switch (message.text)

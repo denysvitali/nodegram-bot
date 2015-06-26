@@ -1,4 +1,5 @@
-var settings = require('./settings');
+var fs = require('fs');
+var settings = JSON.parse(fs.readFileSync(__dirname + "/settings.json"));
 var debug = {};
 
 debug.start_time = Date.now();

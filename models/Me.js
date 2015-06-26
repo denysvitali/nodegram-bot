@@ -1,7 +1,8 @@
 var Promise = require("bluebird");
 var request = Promise.promisify(require("request"));
 
-var settings = require('../settings');
+var fs = require('fs')
+var settings = JSON.parse(fs.readFileSync(__dirname + "/../settings.json"));
 var debug = require('../debug');
 
 function Me()
