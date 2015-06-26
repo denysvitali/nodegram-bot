@@ -80,7 +80,7 @@ genmeme.parseTextMsg = function(message)
                                         }
                                     });
                             }
-                            else(value.width < value.height)
+                            else
                             {
                                 //WIDTH BASED
                                 var size = 130;

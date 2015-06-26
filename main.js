@@ -17,6 +17,12 @@ var utils = require('./utils');
 var methods = require('./methods');
 
 
+// Bot versioning settings
+var plugins_global = {
+    "nodegramV": "1.0.2",
+    "githubUrl": "https://github.com/denysvitali/nodegram-bot"
+};
+
 // Objects
 
 var Me = require('./models/Me');
@@ -43,24 +49,22 @@ for (i in result)
     {
         var dirname = result[i];
         var dir = fs.readdirSync(pluginPath + "/" + result[i]);
-        for(i2 in dir)
+        for (i2 in dir)
         {
             var fileStat = fs.statSync(pluginPath + "/" + result[i] + "/" + dir[i2]);
-            if(!fileStat.isDirectory() && dir[i2] == (result[i]+".js").toLowerCase())
+            if (!fileStat.isDirectory() && dir[i2] == (result[i] + ".js")
+                .toLowerCase())
             {
                 var plugin = require(pluginPath + "/" + result[i] + "/" + dir[i2]);
+                if (typeof(plugin.setGlobals) == "function")
+                {
+                    plugin.setGlobals(plugins_global);
+                }
                 plugins.push(plugin);
                 debug.info("Plugin found: " + result[i]);
-            } 
+            }
         }
     }
-
-    /* && result[i].match(/^.+\.js$/i))
-    {
-        debug.info("Plugin found: " + result[i]);
-        var plugin = require(pluginPath + "/" + result[i]);
-        plugins.push(plugin);
-    }*/
 }
 
 console.log("PLUGINS: ", plugins)

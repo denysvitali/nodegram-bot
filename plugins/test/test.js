@@ -5,9 +5,6 @@ var test = {};
 
 test.parseTextMsg = function(message)
 {
-	console.log("Parsing message from plugin!");
-	console.log(message.text);
-
 	if(message.text == "/test")
 	{
 		methods.sendMessage(message.chat.id, "Your test worked perfectly!", null, message.message_id);

@@ -15,7 +15,7 @@ methods.sendMessage = function(chatid, message, dwp, reply_to_mid, reply_markup)
         text: message,
         disable_web_page_preview: dwp,
         reply_to_message_id: reply_to_mid,
-        reply_markup: reply_markup
+        reply_markup: JSON.stringify(reply_markup)
     };
 
     var keys = Object.keys(formData);
@@ -26,6 +26,7 @@ methods.sendMessage = function(chatid, message, dwp, reply_to_mid, reply_markup)
             delete formData[keys[i]]
         }
     }
+
 
     return request(
         {
@@ -46,7 +47,7 @@ methods.sendPhoto = function(chatid, photo, caption, reply_to_mid, reply_markup)
         photo: photo,
         caption: caption,
         reply_to_message_id: reply_to_mid,
-        reply_markup: reply_markup
+        reply_markup: JSON.stringify(reply_markup)
     };
 
 
@@ -75,14 +76,14 @@ methods.sendSticker = function(chatid, sticker, reply_to_mid, reply_mup)
 {
     if (typeof(reply_to_mid) == "undefined")
         reply_to_mid = null
-    if (typeof(reply_mup) == "undefined")
-        reply_mup = null
+    if (typeof(reply_markup) == "undefined")
+        reply_markup = null
 
     var formData = {
         chat_id: chatid,
         sticker: sticker,
         reply_to_message_id: reply_to_mid,
-        reply_markup: reply_mup
+        reply_markup: JSON.stringify(reply_markup)
     };
 
     var keys = Object.keys(formData);
