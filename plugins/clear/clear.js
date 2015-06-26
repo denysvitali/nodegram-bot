@@ -16,4 +16,13 @@ clear.parseTextMsg = function(message)
     }
 }
 
+clear.usage = function()
+{
+    var msg = "";
+    msg += "This plugins clears the chat\n"
+    msg += "Type /clear to invoke Mr.Clean"
+    return msg;
+}	
+
+
 module.exports = clear;
