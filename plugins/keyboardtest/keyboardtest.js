@@ -16,6 +16,14 @@ keyboardtest.parseTextMsg = function(message)
         }
         methods.sendMessage(message.chat.id, "Your test worked perfectly!", null, message.message_id, rkm);
     }
+}
+
+keyboardtest.usage = function()
+{
+    var msg = "";
+    msg += "This plugins was created just to test the keyboard feature of Telegram v3+\n"
+    msg += "Type /keyboardtest to show the keyboard"
+    return msg;
 }	
 
 module.exports = keyboardtest;
