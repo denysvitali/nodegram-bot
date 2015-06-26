@@ -64,6 +64,7 @@ Show a graph of trend based on Google Trends
 
 ### Clear
 <img src="http://i.imgur.com/spw9x7a.jpg" height=100 /> 
+
 Did you ever thought of cleaning your chat?
 Now you can, with Mr.Clean!
 
