@@ -42,18 +42,18 @@ genmeme.parseTextMsg = function(message)
 
                             console.log(value);
 
-                            if (value.width > value.height)
+                            if (value.width > value.height || value.width == value.height)
                             {
                                 //HEIGHT BASED
                                 var size = 130;
                                 var ratio = 15;
                                 var stroke_ratio = 9 / 2000;
                                 var bottomspace_ratio = 10 / 1339
-                                var ratio_text = 38;
+                                var ratio_text = 45;
                                 var diff = 5;
 
-                                var fontSize1 = 100 * (textlength[0] < 5 ? 3 : (ratio_text / (textlength[0] + diff) > ratio_text ? ratio_text : ratio_text / (textlength[0] + diff))) / 1339 * value.height;
-                                var fontSize2 = 100 * (textlength[0] < 5 ? 3 : (ratio_text / (textlength[1] + diff) > ratio_text ? ratio_text : ratio_text / (textlength[1] + diff))) / 1339 * value.height;
+                                var fontSize1 = 60 * (textlength[0] < 5 ? 3 : (ratio_text / (textlength[0] + diff) > ratio_text ? ratio_text : ratio_text / (textlength[0] + diff))) / 1339 * value.height;
+                                var fontSize2 = 60 * (textlength[0] < 5 ? 3 : (ratio_text / (textlength[1] + diff) > ratio_text ? ratio_text : ratio_text / (textlength[1] + diff))) / 1339 * value.height;
 
                                 image.font(__dirname + "/fonts/impact.ttf")
                                     .fill("#FFFFFF")
