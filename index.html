@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nodegram-bot by denysvitali</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Nodegram-bot</h1>
+      <h2 class="project-tagline">A Telegram-bot written in Node.JS</h2>
+      <a href="https://github.com/denysvitali/nodegram-bot" class="btn">View on GitHub</a>
+      <a href="https://github.com/denysvitali/nodegram-bot/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/denysvitali/nodegram-bot/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p><img src="http://i.imgur.com/Tz2m0v9.png" width="150"></p>
+
+<h1>
+<a id="nodegram-bot" class="anchor" href="#nodegram-bot" aria-hidden="true"><span class="octicon octicon-link"></span></a>nodegram-bot</h1>
+
+<p>A Telegram-bot written in Node.JS</p>
+
+<p><img src="http://i.imgur.com/Lz5oYTV.png" alt="The trend plugin"></p>
+
+<h2>
+<a id="first-things-first" class="anchor" href="#first-things-first" aria-hidden="true"><span class="octicon octicon-link"></span></a>First things first</h2>
+
+<p>To make your bot working you have to gather somehow a valid SSL certificate, because as stated in the docs of Telegram </p>
+
+<blockquote>
+<p>Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update.</p>
+</blockquote>
+
+<p>This is the most tricky part. Once you've set-up your domain with the SSL certificate (maybe gathered from <a href="https://www.startssl.com/">StartSSL</a> you could proceed to the configuration of apache.</p>
+
+<h3>
+<a id="virtual-hosts-oh-virtual-hosts" class="anchor" href="#virtual-hosts-oh-virtual-hosts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Virtual Hosts, oh, virtual hosts</h3>
+
+<p>In my setup I used two Apache2 servers,
+I know, don't blame me, it was due to a management choice.
+In this section we'll keep it simple and illustrate how to configure the Proxy Server (apache2)</p>
+
+<pre><code>&lt;VirtualHost *:443&gt;
+#SSL setup
+SSLEngine on
+SSLProtocol all -SSLv2 -SSLv3
+SSLCertificateFile "/etc/apache2/ssl/denvit.work.crt"
+SSLCertificateKeyFile "/etc/apache2/ssl/denvit.work.pem"
+SSLCertificateChainFile "/etc/apache2/ssl/startssl.pem"
+SSLCertificateChainFile "/etc/apache2/ssl/sub.class1.server.ca.startssl.pem"
+
+#Host info
+ServerName denvit.work
+ServerAlias vps.denvit.work
+
+ProxyPreserveHost On
+ProxyPass / http://127.0.0.1:30303/
+ProxyPassReverse / http://127.0.0.1:30303/
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>Things you probably need to change:</p>
+
+<ul>
+<li>  SSLCertificateFile, this is the path of your SSL certificate file</li>
+<li>  SSLCertificateKeyFile, this is the key of your SSL pair</li>
+<li>  ServerName, this is your hostname. The one specified into the settings.js file</li>
+<li>  ServerAlias, this is an alias for your virtualhost (in my case it's also reachable via <a href="https://vps.denvit.work/">https://vps.denvit.work/</a>)</li>
+</ul>
+
+<p>Set up everything as this and just change it as you need.
+The port should be 30303 if you didn't changed it into settings.js </p>
+
+<h2>
+<a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugins</h2>
+
+<h3>
+<a id="genmeme" class="anchor" href="#genmeme" aria-hidden="true"><span class="octicon octicon-link"></span></a>Genmeme</h3>
+
+<p>Creates a meme based on a your google images search keywords and the text(s) you provide
+<img src="http://i.imgur.com/Cd9jLLD.png" alt="Genmeme plugin"></p>
+
+<h4>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<p>/genmeme image keywords-top text-bottom text</p>
+
+<h3>
+<a id="trends" class="anchor" href="#trends" aria-hidden="true"><span class="octicon octicon-link"></span></a>Trends</h3>
+
+<p>Show a graph of trend based on Google Trends
+<img src="http://i.imgur.com/Lz5oYTV.png" alt="Trends plugin"></p>
+
+<h4>
+<a id="usage-1" class="anchor" href="#usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<p>/trend trend1,trend2[,trend3,...]</p>
+
+<h3>
+<a id="clear" class="anchor" href="#clear" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clear</h3>
+
+<p><img src="http://i.imgur.com/spw9x7a.jpg" height="100"> </p>
+
+<p>Did you ever thought of cleaning your chat?
+Now you can, with Mr.Clean!</p>
+
+<h4>
+<a id="result" class="anchor" href="#result" aria-hidden="true"><span class="octicon octicon-link"></span></a>Result</h4>
+
+<p>(obviously the output is more longer)
+<img src="http://i.imgur.com/YKA10z2.png" alt="Clear"></p>
+
+<h4>
+<a id="usage-2" class="anchor" href="#usage-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<p>/clear</p>
+
+<h3>
+<a id="version" class="anchor" href="#version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version</h3>
+
+<p>Shows the version of the nodegram-bot</p>
+
+<h4>
+<a id="result-1" class="anchor" href="#result-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Result</h4>
+
+<p><img src="http://i.imgur.com/GMtKSXu.png" alt="Version"></p>
+
+<h4>
+<a id="usage-3" class="anchor" href="#usage-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<p>/version</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/denysvitali/nodegram-bot">Nodegram-bot</a> is maintained by <a href="https://github.com/denysvitali">denysvitali</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
