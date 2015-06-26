@@ -48,7 +48,15 @@ The port should be 30303 if you didn't changed it into settings.js
 ## Plugins
 
 ### Genmeme
+Creates a meme based on a your google images search keywords and the text(s) you provide
 ![Genmeme plugin](http://i.imgur.com/Cd9jLLD.png)
 
 #### Usage
 /genmeme image keywords-top text-bottom text
+
+### Trends
+Show a graph of trend based on Google Trends
+![Trends plugin](http://i.imgur.com/Lz5oYTV.png)
+
+#### Usage
+/trend trend1,trend2[,trend3,...]
