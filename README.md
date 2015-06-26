@@ -74,3 +74,12 @@ Now you can, with Mr.Clean!
 
 #### Usage
 /clear
+
+### Version
+Shows the version of the nodegram-bot
+
+#### Result
+![Version](http://i.imgur.com/GMtKSXu.png)
+
+#### Usage
+/version
