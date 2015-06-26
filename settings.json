@@ -1,6 +1,6 @@
 {
     "debug": true,
-    "token": "117232081:AAHYO8mJcqOUx0NLG5nGg1viENpelNsGrQk",
+    "token": "<YOUR TOKEN>",
     "api": "https://api.telegram.org",
     "hostname": "denvit.work",
     "port": 30303
