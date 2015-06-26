@@ -1,5 +1,5 @@
-var methods = require("../methods");
-var debug = require("../debug");
+var methods = require("../../methods");
+var debug = require("../../debug");
 
 var test = {};
 

@@ -39,12 +39,28 @@ var result = fs.readdirSync(pluginPath);
 for (i in result)
 {
     var stat = fs.statSync(pluginPath + "/" + result[i]);
-    if (!stat.isDirectory() && result[i].match(/^.+\.js$/i))
+    if (stat.isDirectory())
+    {
+        var dirname = result[i];
+        var dir = fs.readdirSync(pluginPath + "/" + result[i]);
+        for(i2 in dir)
+        {
+            var fileStat = fs.statSync(pluginPath + "/" + result[i] + "/" + dir[i2]);
+            if(!fileStat.isDirectory() && dir[i2] == (result[i]+".js").toLowerCase())
+            {
+                var plugin = require(pluginPath + "/" + result[i] + "/" + dir[i2]);
+                plugins.push(plugin);
+                debug.info("Plugin found: " + result[i]);
+            } 
+        }
+    }
+
+    /* && result[i].match(/^.+\.js$/i))
     {
         debug.info("Plugin found: " + result[i]);
         var plugin = require(pluginPath + "/" + result[i]);
         plugins.push(plugin);
-    }
+    }*/
 }
 
 console.log("PLUGINS: ", plugins)
