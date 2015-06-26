@@ -11,10 +11,4 @@ test.parseTextMsg = function(message)
 	}
 }
 
-/*test.parseStickerMsg = function(message)
-{
-	debug.info("Got a sticker, yay!");
-	methods.sendSticker(message.chat.id, "BQADAgADHAADyIsGAAFZfq1bphjqlgI");
-}*/
-
 module.exports = test;

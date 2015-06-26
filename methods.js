@@ -33,6 +33,10 @@ methods.sendMessage = function(chatid, message, dwp, reply_to_mid, reply_markup)
             url: settings.api + "/bot" + settings.token + "/sendMessage",
             method: "POST",
             formData: formData
+        }).then(function(contents)
+        {
+            var message = JSON.parse(contents[1]);
+            return message.result;
         })
         .catch(function(e)
         {
