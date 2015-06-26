@@ -44,3 +44,11 @@ Things you probably need to change:
 Set up everything as this and just change it as you need.
 The port should be 30303 if you didn't changed it into settings.js 
 
+
+## Plugins
+
+### Genmeme
+![Genmeme plugin](http://i.imgur.com/Cd9jLLD.png)
+
+#### Usage
+/genmeme image keywords-top text-bottom text
