@@ -51,7 +51,7 @@ The port should be 30303 if you didn't changed it into settings.js
 ![The plugin manager](http://i.imgur.com/XNkbj6p.png)
 
 This is the father of every plugin,
-his job is to enable and disable the plugins on the fly when a **superuser** wants to.
+its job is to enable and disable the plugins on the fly when a **superuser** wants to.
 The list of enabled plugins is kept, so you don't have to manually reenable everything at startup (check data/plugins_enabled.json for more info)
 
 #### Usage
