@@ -56,15 +56,19 @@ The list of enabled plugins is kept, so you don't have to manually reenable ever
 
 #### Usage
 >/plugin list
+
 List every plugin available (and their status)
 
 >/plugin enable <plugin name>
+
 Enables a plugin
 
 >/plugins disable <plugin name>
+
 Disable a plugin
 
 >/getmyid
+
 Shows your ID, this is very useful if you want to add yourself to the superusers and you look for your id
 
 
