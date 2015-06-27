@@ -354,16 +354,20 @@ plugin_manager.parseTextMsg = function(message)
                 }
                 else if (matches[3] == "list")
                 {
-                    var response_text = "Plugin list:\n";
+                    var response_text = "";
                     for (i in plugin_manager.plugins_list)
                     {
                         var plugin = plugin_manager.plugins_list[i];
+                        if(plugin == "plugin_manager")
+                        {
+                            continue;
+                        }
                         var enabled = false;
                         if (pluginsEnabled.indexOf(plugin) != -1)
                         {
                             enabled = true;
                         }
-                        response_text += "\n" + plugin + " " + (enabled ? emoji.get("white_check_mark") : emoji.get("x"));
+                        response_text += plugin + " " + (enabled ? emoji.get("white_check_mark") : emoji.get("x")) + "\n";
                     }
                     methods.sendMessage(message.chat.id, response_text, null, message.message_id);
                 }
