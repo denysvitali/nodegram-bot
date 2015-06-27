@@ -55,16 +55,16 @@ its job is to enable and disable the plugins on the fly when a **superuser** wan
 The list of enabled plugins is kept, so you don't have to manually reenable everything at startup (check data/plugins_enabled.json for more info)
 
 #### Usage
-`/plugin list
+>/plugin list
 List every plugin available (and their status)
 
-`/plugin enable <plugin name>
+>/plugin enable <plugin name>
 Enables a plugin
 
-`/plugins disable <plugin name>
+>/plugins disable <plugin name>
 Disable a plugin
 
-`/getmyid
+>/getmyid
 Shows your ID, this is very useful if you want to add yourself to the superusers and you look for your id
 
 
