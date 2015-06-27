@@ -64,6 +64,11 @@ plugin_manager.reloadPlugins = function()
                         plugin.setGlobals(plugin_manager._plugins_global);
                     }
 
+                    if (typeof(plugin.setPMPlugins) == "function")
+                    {
+                        plugin.setPMPlugins(plugin_manager.plugins);
+                    }
+
                     if (plugin.hasOwnProperty("properties"))
                     {
                         if (plugin.properties.hasOwnProperty("friendlyName"))
@@ -295,14 +300,14 @@ plugin_manager.parseTextMsg = function(message)
         .yellow + " => " + message.text);
 
 
-    if (message.text == "/getmyid")
+    if (message.text == "/getmyid" || message.text == "/getmyid@"+plugin_manager._plugins_global.me.username)
     {
         methods.sendMessage(message.chat.id, "Your id is: " + from.id, null, message.message_id);
         return;
     }
 
-
-    var matches = message.text.match(/^\/plugin (?:(enable|disable) (.*?)|(list))$/);
+    var regexp = new RegExp("^\/plugin(?:@"+plugin_manager._plugins_global.me.username+"|) (?:(enable|disable) (.*?)|(list))$");
+    var matches = message.text.match(regexp);
     if (matches)
     {
         //Invoked plugin enable/disable

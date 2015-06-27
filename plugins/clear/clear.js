@@ -5,7 +5,7 @@ var clear = {};
 
 clear.parseTextMsg = function(message)
 {
-    if (message.text == "/clear")
+    if (message.text == "/clear" || message.text == "/clear@" + clear._globals.me.username)
     {
         var text = "";
         for (i = 0; i < 50; i++)
@@ -22,7 +22,14 @@ clear.usage = function()
     msg += "This plugins clears the chat\n"
     msg += "Type /clear to invoke Mr.Clean"
     return msg;
-}	
+}
+
+clear._globals = {};
+clear.setGlobals = function(globals)
+{
+    this._globals = globals;
+}
+
 
 
 clear.properties = {

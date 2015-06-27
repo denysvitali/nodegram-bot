@@ -72,6 +72,21 @@ Disable a plugin
 Shows your ID, this is very useful if you want to add yourself to the superusers and you look for your id
 
 
+### Help
+![The help plugin](http://i.imgur.com/2ahFz1A.png)
+
+This plugin takes care of supplying all the usage information about the plugins to the user when requested
+
+#### Usage
+>/help
+
+Shows the general help, based on the enabled plugins
+
+>/help <plugin friendly name>
+
+Shows the plugin informations (Name, Friendly Name, Description and Usage)
+
+
 ### Genmeme
 Creates a meme based on a your google images search keywords and the text(s) you provide
 ![Genmeme plugin](http://i.imgur.com/Cd9jLLD.png)

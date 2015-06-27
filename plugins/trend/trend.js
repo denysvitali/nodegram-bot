@@ -12,7 +12,8 @@ var trend = {};
 
 trend.parseTextMsg = function(message)
 {
-    var matches = message.text.match(/\/trend (.*?),(.*)$/);
+    var regexp = new RegExp("^\/trend(?:@"+trend._globals.me.username+"|) (.*?),(.*)$");
+    var matches = message.text.match(regexp);
     if (matches)
     {
         //command okay
@@ -60,6 +61,12 @@ trend.parseTextMsg = function(message)
         });
 
     }
+}
+
+trend._globals = {};
+trend.setGlobals = function(globals)
+{
+    this._globals = globals;
 }
 
 trend.usage = function()

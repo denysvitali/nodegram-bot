@@ -15,7 +15,8 @@ var genmeme = {};
 
 genmeme.parseTextMsg = function(message)
 {
-    var matches = message.text.match(/\/genmeme (.*)-(.*?)-(.*?)$/);
+    var regexp = new RegExp("^\/genmeme(?:@"+genmeme._globals.me.username+"|) (.*)-(.*?)-(.*?)$");
+    var matches = message.text.match(regexp);
     if (matches)
     {
         genmeme.searchImage(matches[1])
@@ -123,6 +124,12 @@ genmeme.parseTextMsg = function(message)
 
 
     }
+}
+
+genmeme._globals = {};
+genmeme.setGlobals = function(globals)
+{
+    this._globals = globals;
 }
 
 

@@ -13,7 +13,8 @@ var getimg = {};
 
 getimg.parseTextMsg = function(message)
 {
-    var matches = message.text.match(/\/getimg (.*)$/);
+    var regexp = new RegExp("^\/getimg(?:@"+getimg._globals.me.username+"|) (.*)$");
+    var matches = message.text.match(regexp);
     if (matches)
     {
         getimg.searchImage(matches[1])
@@ -62,6 +63,12 @@ getimg.searchImage = function(term)
         {
             debug.error(e);
         });
+}
+
+getimg._globals = {};
+getimg.setGlobals = function(globals)
+{
+    this._globals = globals;
 }
 
 getimg.properties = {

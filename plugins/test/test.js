@@ -5,10 +5,16 @@ var test = {};
 
 test.parseTextMsg = function(message)
 {
-	if(message.text == "/test")
+	if(message.text == "/test" || message.text == "/test@"+test._globals.me.username)
 	{
 		methods.sendMessage(message.chat.id, "Your test worked perfectly!", null, message.message_id);
 	}
+}
+
+test._globals = {};
+test.setGlobals = function(globals)
+{
+	this._globals = globals;
 }
 
 test.properties = {

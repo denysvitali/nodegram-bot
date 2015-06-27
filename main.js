@@ -17,12 +17,6 @@ var utils = require('./utils');
 var methods = require('./methods');
 
 
-// Bot versioning settings
-var plugins_global = {
-    "nodegramV": "1.0.3",
-    "githubUrl": "https://github.com/denysvitali/nodegram-bot"
-};
-
 // Objects
 
 var Me = require('./models/Me');
@@ -33,6 +27,13 @@ me.getInfos()
     {
         init();
     });
+
+// Bot versioning settings
+var plugins_global = {
+    "nodegramV": "1.0.4",
+    "githubUrl": "https://github.com/denysvitali/nodegram-bot",
+    "me": me
+};
 
 var plugin_manager = require("./plugins/plugin_manager/plugin_manager");
 plugin_manager.init(plugins_global);

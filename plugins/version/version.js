@@ -5,7 +5,7 @@ var version = {};
 
 version.parseTextMsg = function(message)
 {
-	if(message.text == "/version")
+	if(message.text == "/version" || message.text == "/version@"+version._globals.me.username)
 	{
 		var formatted_version = "";
 		formatted_version += "nodegram-bot\n";
