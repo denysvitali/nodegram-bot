@@ -36,7 +36,7 @@ getimg.parseTextMsg = function(message)
                     })
             }).catch(function(error)
             {
-                
+
             });
 
 
@@ -46,7 +46,7 @@ getimg.parseTextMsg = function(message)
 
 getimg.searchImage = function(term)
 {
-    //Based on https://github.com/vdemedes/node-google-images/  var fs, generateInfo, request;
+    //Based on https://github.com/vdemedes/node-google-images/
 
     return promRequest("http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + encodeURIComponent(term) + "&start=0")
         .then(function(contents)
@@ -58,15 +58,18 @@ getimg.searchImage = function(term)
             //Get a random image
             var item = items[Math.floor(Math.random() * (items.length))];
             return item.url;
+        }).catch(function(e)
+        {
+            debug.error(e);
         });
 }
 
-getimg.usage = function()
-{
-    var msg = "";
-    msg += "This plugin creates returns a photo from the provided keywords by using Google Search"
-    msg += "Type /getimg <image search keyword> to get an image"
-    return msg;
+getimg.properties = {
+    name: "Google Image Search",
+    friendlyName: "getimg",
+    description: "This plugin creates returns a photo from the provided keywords by using Google Search",
+    usage: "Type /getimg <image search keyword> to get an image",
+    version: "1.0.0"
 }
 
 module.exports = getimg;

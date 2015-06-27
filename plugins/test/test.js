@@ -11,4 +11,12 @@ test.parseTextMsg = function(message)
 	}
 }
 
+test.properties = {
+    name: "Test",
+    friendlyName: "test",
+    description: "Most simple plugin ever",
+    usage: "Type /test to reply with a test message",
+    version: "1.0.0"
+}
+
 module.exports = test;

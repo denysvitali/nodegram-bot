@@ -26,7 +26,7 @@ trend.parseTextMsg = function(message)
         }
         var trends = first_trend + "," + other_trends.join(",");
 
-        webshot('http://www.google.com/trends/fetchComponent?hl=it-IT&q=' + trends + '&cid=TIMESERIES_GRAPH_0&export=5&w=1024&h=900', 'googletrend.png', function(err)
+        webshot('http://www.google.com/trends/fetchComponent?hl=en-US&q=' + trends + '&cid=TIMESERIES_GRAPH_0&export=5&w=1024&h=900', 'googletrend.png', function(err)
         {
             if (err)
             {
@@ -68,6 +68,14 @@ trend.usage = function()
     msg += "This plugin makes a comparison between two or more trends by using webshot and the Google Trends webpage\n"
     msg += "Type /trend <trend1>,<trend2>[,<trend3>,<trendN>] to view some trends!"
     return msg;
+}
+
+trend.properties = {
+    name: "Trend",
+    friendlyName: "trend",
+    description: "This plugin makes a comparison between two or more trends by using webshot and the Google Trends webpage",
+    usage: "Type /trend <trend1>,<trend2>[,<trend3>,<trendN>] to view some trends",
+    version: "1.0.0"
 }
 
 module.exports = trend;

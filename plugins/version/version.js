@@ -21,4 +21,12 @@ version.setGlobals = function(globals)
 	this._globals = globals;
 }
 
+version.properties = {
+    name: "Version",
+    friendlyName: "version",
+    description: "This plugin shows the current version of nodegram-bot",
+    usage: "Type /version to see the nodegram-bot version",
+    version: "1.0.0"
+}
+
 module.exports = version;

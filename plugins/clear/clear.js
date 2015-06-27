@@ -25,4 +25,12 @@ clear.usage = function()
 }	
 
 
+clear.properties = {
+    name: "Clear",
+    friendlyName: "clear",
+    description: "This plugins clears the chat",
+    usage: "Type /clear to invoke Mr.Clean",
+    version: "1.0.0"
+}
+
 module.exports = clear;

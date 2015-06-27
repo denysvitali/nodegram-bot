@@ -6,7 +6,6 @@ var fs = require('fs');
 var Promise = require("bluebird");
 var request = require("request");
 var promRequest = Promise.promisify(request);
-var webshot = require('webshot');
 var easyimg = require('easyimage');
 var gm = require('gm');
 
@@ -144,12 +143,12 @@ genmeme.searchImage = function(term)
         });
 }
 
-genmeme.usage = function()
-{
-    var msg = "";
-    msg += "This plugin creates a meme based on a web image search and a text for top/bottom\n"
-    msg += "Type /genmeme <image search keyword>-<text on top>-<text on bottom> to generate a meme"
-    return msg;
+genmeme.properties = {
+    name: "Meme generator",
+    friendlyName: "genmeme",
+    description: "This plugin creates a meme based on a web image search and a text for top/bottom",
+    usage: "Type /genmeme <image search keyword>-<text on top>-<text on bottom> to generate a meme",
+    version: "1.0.0"
 }
 
 module.exports = genmeme;

@@ -18,12 +18,12 @@ keyboardtest.parseTextMsg = function(message)
     }
 }
 
-keyboardtest.usage = function()
-{
-    var msg = "";
-    msg += "This plugins was created just to test the keyboard feature of Telegram v3+\n"
-    msg += "Type /keyboardtest to show the keyboard"
-    return msg;
-}	
+keyboardtest.properties = {
+    name: "Keyboard test",
+    friendlyName: "keyboardtest",
+    description: "This plugins was created just to test the keyboard feature of Telegram v3+",
+    usage: "Type /keyboardtest to show the keyboard",
+    version: "1.0.0"
+}
 
 module.exports = keyboardtest;
