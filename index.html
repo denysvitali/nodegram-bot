@@ -81,15 +81,61 @@ The port should be 30303 if you didn't changed it into settings.js </p>
 <a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugins</h2>
 
 <h3>
+<a id="plugin-manager" class="anchor" href="#plugin-manager" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin manager</h3>
+
+<p><img src="http://i.imgur.com/XNkbj6p.png" alt="The plugin manager"></p>
+
+<p>This is the father of every plugin,
+its job is to enable and disable the plugins on the fly when a <strong>superuser</strong> wants to.
+The list of enabled plugins is kept, so you don't have to manually reenable everything at startup (check data/plugins_enabled.json for more info)</p>
+
+<h4>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<p><code>/plugin list</code></p>
+
+<p>List every plugin available (and their status)</p>
+
+<p><code>/plugin enable &lt;plugin name&gt;</code></p>
+
+<p>Enables a plugin</p>
+
+<p><code>/plugins disable &lt;plugin name&gt;</code></p>
+
+<p>Disable a plugin</p>
+
+<p><code>/getmyid</code></p>
+
+<p>Shows your ID, this is very useful if you want to add yourself to the superusers and you look for your id</p>
+
+<h3>
+<a id="help" class="anchor" href="#help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Help</h3>
+
+<p><img src="http://i.imgur.com/2ahFz1A.png" alt="The help plugin"></p>
+
+<p>This plugin takes care of supplying all the usage information about the plugins to the user when requested</p>
+
+<h4>
+<a id="usage-1" class="anchor" href="#usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<p><code>/help</code></p>
+
+<p>Shows the general help, based on the enabled plugins</p>
+
+<p><code>/help &lt;plugin friendly name&gt;</code></p>
+
+<p>Shows the plugin informations (Name, Friendly Name, Description and Usage)</p>
+
+<h3>
 <a id="genmeme" class="anchor" href="#genmeme" aria-hidden="true"><span class="octicon octicon-link"></span></a>Genmeme</h3>
 
 <p>Creates a meme based on a your google images search keywords and the text(s) you provide
 <img src="http://i.imgur.com/Cd9jLLD.png" alt="Genmeme plugin"></p>
 
 <h4>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+<a id="usage-2" class="anchor" href="#usage-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
 
-<p>/genmeme image keywords-top text-bottom text</p>
+<p><code>/genmeme image keywords-top text-bottom text</code></p>
 
 <h3>
 <a id="trends" class="anchor" href="#trends" aria-hidden="true"><span class="octicon octicon-link"></span></a>Trends</h3>
@@ -98,9 +144,9 @@ The port should be 30303 if you didn't changed it into settings.js </p>
 <img src="http://i.imgur.com/Lz5oYTV.png" alt="Trends plugin"></p>
 
 <h4>
-<a id="usage-1" class="anchor" href="#usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+<a id="usage-3" class="anchor" href="#usage-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
 
-<p>/trend trend1,trend2[,trend3,...]</p>
+<p><code>/trend trend1,trend2[,trend3,...]</code></p>
 
 <h3>
 <a id="clear" class="anchor" href="#clear" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clear</h3>
@@ -117,9 +163,9 @@ Now you can, with Mr.Clean!</p>
 <img src="http://i.imgur.com/YKA10z2.png" alt="Clear"></p>
 
 <h4>
-<a id="usage-2" class="anchor" href="#usage-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+<a id="usage-4" class="anchor" href="#usage-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
 
-<p>/clear</p>
+<p><code>/clear</code></p>
 
 <h3>
 <a id="version" class="anchor" href="#version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version</h3>
@@ -132,9 +178,9 @@ Now you can, with Mr.Clean!</p>
 <p><img src="http://i.imgur.com/GMtKSXu.png" alt="Version"></p>
 
 <h4>
-<a id="usage-3" class="anchor" href="#usage-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+<a id="usage-5" class="anchor" href="#usage-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
 
-<p>/version</p>
+<p><code>/version</code></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/denysvitali/nodegram-bot">Nodegram-bot</a> is maintained by <a href="https://github.com/denysvitali">denysvitali</a>.</span>
