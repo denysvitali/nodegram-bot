@@ -55,19 +55,19 @@ its job is to enable and disable the plugins on the fly when a **superuser** wan
 The list of enabled plugins is kept, so you don't have to manually reenable everything at startup (check data/plugins_enabled.json for more info)
 
 #### Usage
->/plugin list
+`/plugin list`
 
 List every plugin available (and their status)
 
->/plugin enable <plugin name>
+`/plugin enable <plugin name>`
 
 Enables a plugin
 
->/plugins disable <plugin name>
+`/plugins disable <plugin name>`
 
 Disable a plugin
 
->/getmyid
+`/getmyid`
 
 Shows your ID, this is very useful if you want to add yourself to the superusers and you look for your id
 
@@ -78,11 +78,11 @@ Shows your ID, this is very useful if you want to add yourself to the superusers
 This plugin takes care of supplying all the usage information about the plugins to the user when requested
 
 #### Usage
->/help
+`/help`
 
 Shows the general help, based on the enabled plugins
 
->/help <plugin friendly name>
+`/help <plugin friendly name>`
 
 Shows the plugin informations (Name, Friendly Name, Description and Usage)
 
@@ -92,14 +92,14 @@ Creates a meme based on a your google images search keywords and the text(s) you
 ![Genmeme plugin](http://i.imgur.com/Cd9jLLD.png)
 
 #### Usage
-/genmeme image keywords-top text-bottom text
+`/genmeme image keywords-top text-bottom text`
 
 ### Trends
 Show a graph of trend based on Google Trends
 ![Trends plugin](http://i.imgur.com/Lz5oYTV.png)
 
 #### Usage
-/trend trend1,trend2[,trend3,...]
+`/trend trend1,trend2[,trend3,...]`
 
 ### Clear
 <img src="http://i.imgur.com/spw9x7a.jpg" height=100 /> 
@@ -112,7 +112,7 @@ Now you can, with Mr.Clean!
 ![Clear](http://i.imgur.com/YKA10z2.png)
 
 #### Usage
-/clear
+`/clear`
 
 ### Version
 Shows the version of the nodegram-bot
@@ -121,4 +121,4 @@ Shows the version of the nodegram-bot
 ![Version](http://i.imgur.com/GMtKSXu.png)
 
 #### Usage
-/version
+`/version`
