@@ -37,7 +37,7 @@ getimg.parseTextMsg = function(message)
                     })
             }).catch(function(error)
             {
-
+                debug.err(error);
             });
 
 
@@ -47,7 +47,7 @@ getimg.parseTextMsg = function(message)
 
 getimg.searchImage = function(term)
 {
-    //Based on https://github.com/vdemedes/node-google-images/
+    // Based on https://github.com/vdemedes/node-google-images/
 
     return promRequest("http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + encodeURIComponent(term) + "&start=0")
         .then(function(contents)
@@ -61,7 +61,7 @@ getimg.searchImage = function(term)
             return item.url;
         }).catch(function(e)
         {
-            debug.error(e);
+            debug.err(e); 
         });
 }
 
