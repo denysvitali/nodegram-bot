@@ -5,7 +5,7 @@ A Telegram-bot written in Node.JS
 ![The trend plugin](http://i.imgur.com/Lz5oYTV.png)
 
 ## First things first
-To make your bot working you have to gather somehow a valid SSL certificate, because as stated in the docs of Telegram 
+To make your bot working you have to gather somehow a valid SSL certificate, because as stated in the docs of Telegram
 > Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update.
 
 This is the most tricky part. Once you've set-up your domain with the SSL certificate (maybe gathered ~~from [StartSSL](https://www.startssl.com/)~~ from [Let's Encrypt](https://letsencrypt.org/)) you could proceed to the configuration of apache.
@@ -43,7 +43,12 @@ Things you probably need to change:
 -	ServerAlias, this is an alias for your virtualhost (in my case it's also reachable via https://vps.denvit.work/)
 
 Set up everything as this and just change it as you need.
-The port should be 30303 if you didn't changed it into settings.js 
+The port should be 30303 if you didn't changed it into settings.js
+
+## Running
+1. install nodejs (`curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash - && sudo apt-get install -y nodejs`)
+2. install the dependencies with `npm install`
+3. run with `node index.js`
 
 ## Plugins
 
@@ -102,7 +107,7 @@ Show a graph of trend based on Google Trends
 `/trend trend1,trend2[,trend3,...]`
 
 ### Clear
-<img src="http://i.imgur.com/spw9x7a.jpg" height=100 /> 
+<img src="http://i.imgur.com/spw9x7a.jpg" height=100 />
 
 Did you ever thought of cleaning your chat?
 Now you can, with Mr.Clean!
